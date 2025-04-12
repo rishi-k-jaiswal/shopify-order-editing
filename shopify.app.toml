@@ -1,26 +1,18 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "6d0b3f3d9faae1ffc9c5e3a15353cc8d"
-application_url = "https://instance-seemed-defensive-contractor.trycloudflare.com"
+application_url = "https://moment-rolled-skip-covers.trycloudflare.com"
 embedded = true
 name = "AnkitOrderEditDemo"
 handle = "ankitordereditdemo"
 
 [build]
 automatically_update_urls_on_dev = true
-dev_store_url = "scrollengine-staging.myshopify.com"
+dev_store_url = "scrollengine-production.myshopify.com"
 include_config_on_deploy = true
 
 [webhooks]
 api_version = "2025-04"
-
-  [[webhooks.subscriptions]]
-  topics = [ "app/scopes_update" ]
-  uri = "/webhooks/app/scopes_update"
-
-  [[webhooks.subscriptions]]
-  topics = [ "app/uninstalled" ]
-  uri = "/webhooks/app/uninstalled"
 
   [[webhooks.subscriptions]]
   topics = [
@@ -31,15 +23,23 @@ api_version = "2025-04"
 ]
   uri = "/webhooks/app/order-create"
 
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_products,read_products,read_customers,write_customers,read_assigned_fulfillment_orders,write_assigned_fulfillment_orders,read_merchant_managed_fulfillment_orders,write_merchant_managed_fulfillment_orders,read_third_party_fulfillment_orders,write_third_party_fulfillment_orders,read_draft_orders,write_draft_orders,read_order_edits,write_order_edits,read_orders,write_orders"
+scopes = "read_assigned_fulfillment_orders,read_customers,read_draft_orders,read_merchant_managed_fulfillment_orders,read_order_edits,read_orders,read_products,read_third_party_fulfillment_orders,write_assigned_fulfillment_orders,write_customers,write_draft_orders,write_merchant_managed_fulfillment_orders,write_order_edits,write_orders,write_products,write_third_party_fulfillment_orders"
 
 [auth]
 redirect_urls = [
-  "https://instance-seemed-defensive-contractor.trycloudflare.com/auth/callback",
-  "https://instance-seemed-defensive-contractor.trycloudflare.com/auth/shopify/callback",
-  "https://instance-seemed-defensive-contractor.trycloudflare.com/api/auth/callback"
+  "https://moment-rolled-skip-covers.trycloudflare.com/auth/callback",
+  "https://moment-rolled-skip-covers.trycloudflare.com/auth/shopify/callback",
+  "https://moment-rolled-skip-covers.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]
