@@ -1,45 +1,27 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "6d0b3f3d9faae1ffc9c5e3a15353cc8d"
-application_url = "https://instance-seemed-defensive-contractor.trycloudflare.com"
+client_id = "84e3f256544134606ade642d264d4eb8"
+name = "Order Editing"
+handle = "order-editing-7"
+application_url = "https://outdoors-patrol-nor-sponsors.trycloudflare.com"
 embedded = true
-name = "AnkitOrderEditDemo"
-handle = "ankitordereditdemo"
 
 [build]
 automatically_update_urls_on_dev = true
-dev_store_url = "scrollengine-staging.myshopify.com"
 include_config_on_deploy = true
 
 [webhooks]
 api_version = "2025-04"
 
-  [[webhooks.subscriptions]]
-  topics = [ "app/scopes_update" ]
-  uri = "/webhooks/app/scopes_update"
-
-  [[webhooks.subscriptions]]
-  topics = [ "app/uninstalled" ]
-  uri = "/webhooks/app/uninstalled"
-
-  [[webhooks.subscriptions]]
-  topics = [
-  "orders/create",
-  "orders/fulfilled",
-  "orders/paid",
-  "orders/updated"
-]
-  uri = "/webhooks/app/order-create"
-
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_products,read_products,read_customers,write_customers,read_assigned_fulfillment_orders,write_assigned_fulfillment_orders,read_merchant_managed_fulfillment_orders,write_merchant_managed_fulfillment_orders,read_third_party_fulfillment_orders,write_third_party_fulfillment_orders,read_draft_orders,write_draft_orders,read_order_edits,write_order_edits,read_orders,write_orders"
+scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://instance-seemed-defensive-contractor.trycloudflare.com/auth/callback",
-  "https://instance-seemed-defensive-contractor.trycloudflare.com/auth/shopify/callback",
-  "https://instance-seemed-defensive-contractor.trycloudflare.com/api/auth/callback"
+  "https://outdoors-patrol-nor-sponsors.trycloudflare.com/auth/callback",
+  "https://outdoors-patrol-nor-sponsors.trycloudflare.com/auth/shopify/callback",
+  "https://outdoors-patrol-nor-sponsors.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]
