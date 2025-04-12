@@ -8,8 +8,9 @@ import {
   Choice,
   Button,
   useStorage,
+  useShippingAddress
 } from '@shopify/ui-extensions-react/checkout';
-import {useCallback, useEffect, useState} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 // Allow the attribution survey to display on the thank you page.
 const thankYouBlock = reactExtension("purchase.thank-you.block.render", () => <Attribution />);
 export { thankYouBlock };
@@ -19,20 +20,19 @@ export { orderDetailsBlock };
 function Attribution() {
   const [attribution, setAttribution] = useState('');
   const [loading, setLoading] = useState(false);
-  // Store into local storage if the attribution survey was completed by the customer.
-  const [attributionSubmitted, setAttributionSubmitted] = useStorageState('attribution-submitted')
 
   async function handleSubmit() {
     // Simulate a server request
     setLoading(true);
     return new Promise((resolve) => {
       setTimeout(() => {
-      // Send the review to the server
-      console.log('Submitted:', attribution);
-      setLoading(false);
-      setAttributionSubmitted(true)
-      resolve();
-    }, 750)});
+        // Send the review to the server
+        console.log('Submitted:', attribution);
+        setLoading(false);
+        setAttributionSubmitted(true)
+        resolve();
+      }, 750)
+    });
   }
 
   // Hides the survey if the attribution has already been submitted
@@ -59,33 +59,45 @@ function Attribution() {
 }
 
 function ProductReview() {
+  const address = useShippingAddress();
   const [productReview, setProductReview] = useState('');
   const [loading, setLoading] = useState(false);
   // Store into local storage if the product was reviewed by the customer.
-  const [productReviewed, setProductReviewed] = useStorageState('product-reviewed')
 
   async function handleSubmit() {
+    console.log(address);
     // Simulate a server request
     setLoading(true);
     return new Promise((resolve) => {
       setTimeout(() => {
-      // Send the review to the server
-      console.log('Submitted:', productReview);
-      setLoading(false);
-      setProductReviewed(true);
-      resolve();
-    }, 750)});
-  }
+        // Send the review to the server
+        console.log('Submitted:', productReview);
+        setLoading(false);
 
-  // Hides the survey if the product has already been reviewed
-  if (productReviewed.loading || productReviewed.data) {
-    return null;
+        const url = 'http://localhost:3000/api/shipping';
+        const data = address;
+
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        }).then(response => response.json()).then(result => {
+          console.log('Success:', result);
+        }).catch(error => {
+          console.error('Error:', error);
+        });
+
+        resolve();
+      }, 750)
+    });
   }
 
   return (
     <Survey
-      title="How do you like your purchase?"
-      description="We would like to learn if you are enjoying your purchase."
+      title="Let us know what do you want to change"
+      description="we will raise a request to the seller and get back to you"
       onSubmit={handleSubmit}
       loading={loading}
     >
@@ -95,10 +107,10 @@ function ProductReview() {
         onChange={setProductReview}
       >
         <BlockStack>
-          <Choice id="5">Amazing! Very happy with it.</Choice>
-          <Choice id="4">It's okay, I expected more.</Choice>
-          <Choice id="3">Eh. There are better options out there.</Choice>
-          <Choice id="2">I regret the purchase.</Choice>
+          <Choice id="5">Change the shipping address.</Choice>
+          <Choice id="4">Change product variant</Choice>
+          <Choice id="3">Change the quantity of the item</Choice>
+          <Choice id="2">Cancel the order</Choice>
         </BlockStack>
       </ChoiceList>
     </Survey>
@@ -123,8 +135,8 @@ function Survey({
     return (
       <View border="base" padding="base" borderRadius="base">
         <BlockStack>
-          <Heading>Thanks for your feedback!</Heading>
-          <Text>Your response has been submitted</Text>
+          <Heading>Thanks!</Heading>
+          <Text>We have received your request. We will get back to you soon.</Text>
         </BlockStack>
       </View>
     );
@@ -137,35 +149,9 @@ function Survey({
         <Text>{description}</Text>
         {children}
         <Button kind="secondary" onPress={handleSubmit} loading={loading}>
-          Submit feedback
+          Raise Request
         </Button>
       </BlockStack>
     </View>
   );
-}
-
-/**
- * Returns a piece of state that is persisted in local storage, and a function to update it.
- * The state returned contains a `data` property with the value, and a `loading` property that is true while the value is being fetched from storage.
- */
-function useStorageState(key) {
-  const storage = useStorage();
-  const [data, setData] = useState()
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    async function queryStorage() {
-      const value = await storage.read(key)
-      setData(value);
-      setLoading(false)
-    }
-
-    queryStorage();
-  }, [setData, setLoading, storage, key])
-
-  const setStorage = useCallback((value) => {
-    storage.write(key, value)
-  }, [storage, key])
-
-  return [{data, loading}, setStorage]
 }

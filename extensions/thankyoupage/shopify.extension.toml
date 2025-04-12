@@ -14,8 +14,9 @@ api_access = true
 
 [[extensions]]
 type = "ui_extension"
-name = "order-status-thank-you"
-handle = "order-status-thank-you"
+name = "order-edit-thank-you"
+handle = "order-edit-thank-you"
+description = "Extension for editing shipping details on the thank you page"
 
 [[extensions.targeting]]
 target = "purchase.thank-you.block.render"

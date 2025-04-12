@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "6d0b3f3d9faae1ffc9c5e3a15353cc8d"
-application_url = "https://comp-collins-passes-purchase.trycloudflare.com"
+application_url = "https://border-aim-in-measured.trycloudflare.com"
 embedded = true
 name = "AnkitOrderEditDemo"
 handle = "ankitordereditdemo"
@@ -32,9 +32,9 @@ scopes = "read_assigned_fulfillment_orders,read_customers,read_draft_orders,read
 
 [auth]
 redirect_urls = [
-  "https://comp-collins-passes-purchase.trycloudflare.com/auth/callback",
-  "https://comp-collins-passes-purchase.trycloudflare.com/auth/shopify/callback",
-  "https://comp-collins-passes-purchase.trycloudflare.com/api/auth/callback"
+  "https://border-aim-in-measured.trycloudflare.com/auth/callback",
+  "https://border-aim-in-measured.trycloudflare.com/auth/shopify/callback",
+  "https://border-aim-in-measured.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]
@@ -43,3 +43,4 @@ embedded = false
 [build]
 dev_store_url = "scrollengine-production.myshopify.com"
 automatically_update_urls_on_dev = true
+include_config_on_deploy = true
