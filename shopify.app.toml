@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "6d0b3f3d9faae1ffc9c5e3a15353cc8d"
-application_url = "https://pos-pulse-passion-html.trycloudflare.com"
+application_url = "https://instance-seemed-defensive-contractor.trycloudflare.com"
 embedded = true
 name = "AnkitOrderEditDemo"
 handle = "ankitordereditdemo"
@@ -37,9 +37,9 @@ scopes = "write_products,read_products,read_customers,write_customers,read_assig
 
 [auth]
 redirect_urls = [
-  "https://pos-pulse-passion-html.trycloudflare.com/auth/callback",
-  "https://pos-pulse-passion-html.trycloudflare.com/auth/shopify/callback",
-  "https://pos-pulse-passion-html.trycloudflare.com/api/auth/callback"
+  "https://instance-seemed-defensive-contractor.trycloudflare.com/auth/callback",
+  "https://instance-seemed-defensive-contractor.trycloudflare.com/auth/shopify/callback",
+  "https://instance-seemed-defensive-contractor.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

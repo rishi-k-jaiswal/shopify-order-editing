@@ -28,7 +28,7 @@ function Extension() {
     // Consider rendering a fallback UI or nothing at all, if the feature is unavailable
     return (
       <Banner title="thankyoupage" status="warning">
-        {translate("attributeChangesAreNotSupported")}
+        <Text> Hello world</Text>
       </Banner>
     );
   }
