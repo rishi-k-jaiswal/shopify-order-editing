@@ -1,15 +1,10 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "84e3f256544134606ade642d264d4eb8"
-name = "Order Editing"
-handle = "order-editing-7"
-application_url = "https://outdoors-patrol-nor-sponsors.trycloudflare.com"
+client_id = "6d0b3f3d9faae1ffc9c5e3a15353cc8d"
+application_url = "https://comp-collins-passes-purchase.trycloudflare.com"
 embedded = true
-
-[build]
-automatically_update_urls_on_dev = true
-dev_store_url = "scrollengine-production.myshopify.com"
-include_config_on_deploy = true
+name = "AnkitOrderEditDemo"
+handle = "ankitordereditdemo"
 
 [webhooks]
 api_version = "2025-04"
@@ -37,10 +32,14 @@ scopes = "read_assigned_fulfillment_orders,read_customers,read_draft_orders,read
 
 [auth]
 redirect_urls = [
-  "https://moment-rolled-skip-covers.trycloudflare.com/auth/callback",
-  "https://moment-rolled-skip-covers.trycloudflare.com/auth/shopify/callback",
-  "https://moment-rolled-skip-covers.trycloudflare.com/api/auth/callback"
+  "https://comp-collins-passes-purchase.trycloudflare.com/auth/callback",
+  "https://comp-collins-passes-purchase.trycloudflare.com/auth/shopify/callback",
+  "https://comp-collins-passes-purchase.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]
 embedded = false
+
+[build]
+dev_store_url = "scrollengine-production.myshopify.com"
+automatically_update_urls_on_dev = true
