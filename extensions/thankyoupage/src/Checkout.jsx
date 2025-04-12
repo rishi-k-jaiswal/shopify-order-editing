@@ -8,9 +8,11 @@ import {
   useApplyAttributeChange,
   useInstructions,
   useTranslate,
+  Link,
+  Button,
+  View
 } from "@shopify/ui-extensions-react/checkout";
 
-// 1. Choose an extension target
 export default reactExtension("purchase.checkout.block.render", () => (
   <Extension />
 ));
@@ -21,11 +23,7 @@ function Extension() {
   const instructions = useInstructions();
   const applyAttributeChange = useApplyAttributeChange();
 
-
-  // 2. Check instructions for feature availability, see https://shopify.dev/docs/api/checkout-ui-extensions/apis/cart-instructions for details
   if (!instructions.attributes.canUpdateAttributes) {
-    // For checkouts such as draft order invoices, cart attributes may not be allowed
-    // Consider rendering a fallback UI or nothing at all, if the feature is unavailable
     return (
       <Banner title="thankyoupage" status="warning">
         <Text> Hello world</Text>
@@ -33,10 +31,11 @@ function Extension() {
     );
   }
 
-  // 3. Render a UI
+  const editOrderUrl = "";
+
   return (
-    <BlockStack border={"dotted"} padding={"tight"}>
-      <Banner title="thankyoupage">
+    <BlockStack border="dotted" padding="tight" spacing="loose">
+      <Banner title="Thank You Page">
         {translate("welcome", {
           target: <Text emphasis="italic">{extension.target}</Text>,
         })}
@@ -44,11 +43,25 @@ function Extension() {
       <Checkbox onChange={onCheckboxChange}>
         {translate("iWouldLikeAFreeGiftWithMyOrder")}
       </Checkbox>
+
+      {/* 🔁 Edit Order Section */}
+      <View border="base" padding="base" cornerRadius="base">
+        <BlockStack spacing="tight">
+          <Text size="medium" emphasis="bold">
+            Make changes to your order
+          </Text>
+          <Text size="small" tone="subdued">
+            Edit your shipping details or replace products before finalizing.
+          </Text>
+          <Link to={editOrderUrl} target="_blank">
+            <Button>Go to Edit Order Page</Button>
+          </Link>
+        </BlockStack>
+      </View>
     </BlockStack>
   );
 
   async function onCheckboxChange(isChecked) {
-    // 4. Call the API to modify checkout
     const result = await applyAttributeChange({
       key: "requestedFreeGift",
       type: "updateAttribute",
